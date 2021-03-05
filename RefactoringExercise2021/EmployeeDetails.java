@@ -144,7 +144,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end menuBar
 
 	// initialize search panel
-	private JPanel searchPanel() {
+	private JPanel initializeSearchPanel() {
 		JPanel searchPanel = new JPanel(new MigLayout());
 
 		searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
@@ -328,7 +328,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	// display Employee summary dialog
 	private void displayEmployeeSummaryDialog() {
-		// display Employee summary dialog if these is someone to display
+		// display Employee summary dialog if there is someone to display
 		if (isSomeoneToDisplay())
 			new EmployeeSummaryDialog(getAllEmloyees());
 	}// end displaySummaryDialog
@@ -468,7 +468,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	// search Employee by surname
 	public void searchEmployeeBySurname() {
-		boolean found = false;
+		boolean employeeFound = false;
 		// if any active Employee record search for ID else do nothing
 		if (isSomeoneToDisplay()) {
 			firstRecord();// look for first record
@@ -476,9 +476,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			// if ID to search is already displayed do nothing else loop through
 			// records
 			if (searchBySurnameField.getText().trim().equalsIgnoreCase(surnameField.getText().trim()))
-				found = true;
+				employeeFound = true;
 			else if (searchBySurnameField.getText().trim().equalsIgnoreCase(currentEmployee.getSurname().trim())) {
-				found = true;
+				employeeFound = true;
 				displayRecords(currentEmployee);
 			} // end else if
 			else {
@@ -489,7 +489,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					// if found break from loop and display Employee details
 					// else look for next record
 					if (searchBySurnameField.getText().trim().equalsIgnoreCase(currentEmployee.getSurname().trim())) {
-						found = true;
+						employeeFound = true;
 						displayRecords(currentEmployee);
 						break;
 					} // end if
@@ -498,7 +498,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				} // end while
 			} // end else
 				// if Employee not found display message
-			if (!found)
+			if (!employeeFound)
 				JOptionPane.showMessageDialog(null, "Employee not found!");
 		} // end if
 		searchBySurnameField.setText("");
@@ -1052,7 +1052,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		setJMenuBar(menuBar());// add menu bar to frame
 		// add search panel to frame
-		dialog.add(searchPanel(), "width 400:400:400, growx, pushx");
+		dialog.add(initializeSearchPanel(), "width 400:400:400, growx, pushx");
 		// add navigation panel to frame
 		dialog.add(navigPanel(), "width 150:150:150, wrap");
 		// add button panel to frame
