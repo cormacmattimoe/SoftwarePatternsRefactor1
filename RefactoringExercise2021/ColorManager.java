@@ -4,7 +4,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
- //Class which organises the varying color sections
+ //Class which organises the color sections
 public class ColorManager {
 	
 	private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
@@ -22,10 +22,10 @@ public class ColorManager {
 		
 	}
 
-	static Color colour1 = new Color(255, 150, 150);
+	static Color errorColor = new Color(255, 150, 150);
 	
-	// set text field background colour to white
-		void setToWhite() {
+	// setting textfields background colour to white here
+		public void setToWhite() {
 			ppsField.setBackground(UIManager.getColor("TextField.background"));
 			surnameField.setBackground(UIManager.getColor("TextField.background"));
 			firstNameField.setBackground(UIManager.getColor("TextField.background"));
