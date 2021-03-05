@@ -622,19 +622,24 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		application.closeReadFile();// close file for reading
 		// if no records found clear all text fields and display message
 		if (!someoneToDisplay) {
-			currentEmployee = null;
-			idField.setText("");
-			ppsField.setText("");
-			surnameField.setText("");
-			firstNameField.setText("");
-			salaryField.setText("");
-			genderCombo.setSelectedIndex(0);
-			departmentCombo.setSelectedIndex(0);
+			setFieldsEmpty();
 			fullTimeCombo.setSelectedIndex(0);
 			JOptionPane.showMessageDialog(null, "No Employees registered!");
 		}
 		return someoneToDisplay;
 	}// end isSomeoneToDisplay
+	
+	//Creating method here to set all fields to empty and calling that method above
+	  public void setFieldsEmpty(){
+	         idField.setText("");
+	         ppsField.setText("");
+	         surnameField.setText("");
+	         firstNameField.setText("");
+	         salaryField.setText("");
+	         genderCombo.setSelectedIndex(0);
+	         departmentCombo.setSelectedIndex(0);
+	         fullTimeCombo.setSelectedIndex(0);
+	     }
 
 	// check for correct PPS format and look if PPS already in use
 	public boolean correctPps(String pps, long currentByte) {
