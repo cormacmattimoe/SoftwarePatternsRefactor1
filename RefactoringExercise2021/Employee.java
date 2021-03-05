@@ -107,14 +107,14 @@ public class Employee{
 
 	// Display Employee details
 	public String toString() {
-		String bool = "";
+		String fullTimeBool = "";
 		if (fullTime)
-			bool = "Yes";
+			fullTimeBool = "Yes";
 		else
-			bool = "No";
+			fullTimeBool = "No";
 
 		return "Employee ID: " + this.employeeId + "\nPPS Number: " + this.pps + "\nSurname: " + this.surname
 				+ "\nFirst Name: " + this.firstName + "\nGender: " + this.gender + "\nDepartment: " + this.department + "\nSalary: " + this.salary
-				+ "\nFull Time: " + bool;
+				+ "\nFull Time: " + fullTimeBool;
 	}// end toString
 }// end class Employee
