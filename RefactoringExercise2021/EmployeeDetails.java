@@ -228,33 +228,20 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		JPanel empDetails = new JPanel(new MigLayout());
 		JPanel buttonPanel = new JPanel();
 		JTextField field;
-
-		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
-
-		empDetails.add(new JLabel("ID:"), "growx, pushx");
-		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
+		idField = new JTextField(20);
+		ppsField = new JTextField(20);
+		surnameField = new JTextField(20);
+		firstNameField = new JTextField(20);
+		genderCombo = new JComboBox<String>(gender);
+		departmentCombo = new JComboBox<String>(department);
+		salaryField = new JTextField(20);
+		fullTimeCombo = new JComboBox<String>(fullTime);
+		
+		EmployeePanelConfig employeePanelConfig = new EmployeePanelConfig();
+		empDetails = employeePanelConfig.configureEmployeePanel(idField, ppsField, surnameField, firstNameField, genderCombo, 
+				departmentCombo, salaryField, fullTimeCombo, gender, department, fullTime); 
+		
 		idField.setEditable(false);
-
-		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
-		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
-
-		empDetails.add(new JLabel("Surname:"), "growx, pushx");
-		empDetails.add(surnameField = new JTextField(20), "growx, pushx, wrap");
-
-		empDetails.add(new JLabel("First Name:"), "growx, pushx");
-		empDetails.add(firstNameField = new JTextField(20), "growx, pushx, wrap");
-
-		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo = new JComboBox<String>(gender), "growx, pushx, wrap");
-
-		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo = new JComboBox<String>(department), "growx, pushx, wrap");
-
-		empDetails.add(new JLabel("Salary:"), "growx, pushx");
-		empDetails.add(salaryField = new JTextField(20), "growx, pushx, wrap");
-
-		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), "growx, pushx, wrap");
 
 		buttonPanel.add(saveChange = new JButton("Save"));
 		saveChange.addActionListener(this);
