@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/cormacmattimoe/Downloads/jar_files/miglayout-core-5.2.jar"/>
 	<classpathentry kind="lib" path="/Users/cormacmattimoe/Downloads/jar_files/miglayout-swing-5.2.jar"/>
+	<classpathentry kind="lib" path="/Users/cormacmattimoe/Downloads/miglayout-3.7.4.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
