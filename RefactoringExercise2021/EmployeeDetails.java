@@ -56,7 +56,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
 	// hold object start position in file
 	private long currentByteStart = 0;
-	private RandomFile application = new RandomFile();
+	private FileDetails application = new FileDetails();
 	// display files in File Chooser only with extension .dat
 	private FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
 	// hold file name and path for current file in use
@@ -965,13 +965,13 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end getFileName
 
 	// create file with generated file name when application is opened
-	private void createRandomFile() {
+	private void createFileDetails() {
 		generatedFileName = getFileName() + ".dat";
 		// assign generated file name to file
 		file = new File(generatedFileName);
 		// create file
 		application.createFile(file.getName());
-	}// end createRandomFile
+	}// end createFileDetails
 
 	// action listener for buttons, text field and menu items
 	public void actionPerformed(ActionEvent e) {
@@ -1047,7 +1047,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	// content pane for main dialog
 	private void createContentPane() {
 		setTitle("Employee Details");
-		createRandomFile();// create random file name
+		createFileDetails();// create random file name
 		JPanel dialog = new JPanel(new MigLayout());
 
 		setJMenuBar(menuBar());// add menu bar to frame
