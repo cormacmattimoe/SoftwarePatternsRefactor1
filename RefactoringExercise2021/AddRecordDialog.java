@@ -74,7 +74,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		save.requestFocus();
 		buttonPanel.add(cancel = new JButton("Cancel"));
 		cancel.addActionListener(this);
-		empDetails.add(buttonPanel, "span 2,growx, pushx,wrap");
+		empDetails.add(buttonPanel, LayoutManager.loType3);
 		// loop through all panel components and add fonts and listeners
 		for (int i = 0; i < empDetails.getComponentCount(); i++) {
 			empDetails.getComponent(i).setFont(this.parent.font1);
