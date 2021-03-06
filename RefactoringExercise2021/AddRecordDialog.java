@@ -157,17 +157,6 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		return valid;
 	}// end checkInput
 
-	// set text field to white colour
-	public void setToWhite() {
-		ppsField.setBackground(Color.WHITE);
-		surnameField.setBackground(Color.WHITE);
-		firstNameField.setBackground(Color.WHITE);
-		salaryField.setBackground(Color.WHITE);
-		genderCombo.setBackground(Color.WHITE);
-		departmentCombo.setBackground(Color.WHITE);
-		fullTimeCombo.setBackground(Color.WHITE);
-	}// end setToWhite
-
 	// action performed
 	public void actionPerformed(ActionEvent e) {
 		// if chosen option save, save record to file
@@ -179,11 +168,13 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 				this.parent.changesMade = true;
 			}// end if
 			// else display message and set text fields to white colour
-			else {
-				JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
-				setToWhite();
+				else {
+					JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
+					ColorManager backgroundColour = new ColorManager(ppsField,surnameField,firstNameField,salaryField,genderCombo,departmentCombo,fullTimeCombo);
+					backgroundColour.setToWhite();
+				}// end else
 			}// end else
-		}// end if
+		// end if
 		else if (e.getSource() == cancel)
 			dispose();// dispose dialog
 	}// end actionPerformed
