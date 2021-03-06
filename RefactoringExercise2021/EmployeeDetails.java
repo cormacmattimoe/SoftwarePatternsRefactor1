@@ -207,16 +207,16 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private JPanel buttonPanel() {
 		JPanel buttonPanel = new JPanel();
 
-		buttonPanel.add(add = new JButton("Add Record"), "growx, pushx");
+		buttonPanel.add(add = new JButton("Add Record"), LayoutManager.loType1);
 		add.addActionListener(this);
 		add.setToolTipText("Add new Employee Record");
-		buttonPanel.add(edit = new JButton("Edit Record"), "growx, pushx");
+		buttonPanel.add(edit = new JButton("Edit Record"), LayoutManager.loType1);
 		edit.addActionListener(this);
 		edit.setToolTipText("Edit current Employee");
-		buttonPanel.add(deleteButton = new JButton("Delete Record"), "growx, pushx, wrap");
+		buttonPanel.add(deleteButton = new JButton("Delete Record"),  LayoutManager.loType2);
 		deleteButton.addActionListener(this);
 		deleteButton.setToolTipText("Delete current Employee");
-		buttonPanel.add(displayAll = new JButton("List all Records"), "growx, pushx");
+		buttonPanel.add(displayAll = new JButton("List all Records"),  LayoutManager.loType1);
 		displayAll.addActionListener(this);
 		displayAll.setToolTipText("List all Registered Employees");
 
@@ -494,7 +494,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 						break;
 					} // end if
 					else
-						nextRecord();// look for next record
+						change = false;
+						// nextRecord();//
+					// look for next record
 				} // end while
 			} // end else
 				// if Employee not found display message
@@ -698,6 +700,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	// check for input in text fields
 	private boolean checkInput() {
 		boolean valid = true;
+		
 		// if any of inputs are in wrong format, colour text field and display
 		// message
 		if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
@@ -1056,7 +1059,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// add navigation panel to frame
 		dialog.add(navigPanel(), "width 150:150:150, wrap");
 		// add button panel to frame
-		dialog.add(buttonPanel(), "growx, pushx, span 2,wrap");
+		dialog.add(buttonPanel(), LayoutManager.loType3);
 		// add details panel to frame
 		dialog.add(detailsPanel(), "gap top 30, gap left 150, center");
 
