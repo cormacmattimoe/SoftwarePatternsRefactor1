@@ -70,25 +70,23 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		}// end for
 	
 		//construct table and choose table model for each column
- 		tableModel = new DefaultTableModel(this.allEmployees, header) {
+		tableModel = new DefaultTableModel(this.allEmployees, header) {
  			public Class getColumnClass(int c) {
- 				if(c==0) {
+ 				switch (c) {
+ 				case 0:
  					return Integer.class;
- 				}
- 				else if(c==4){
+ 				case 4:
  					return Character.class;
- 				}
- 				else if(c==6){
+ 				case 6:
  					return Double.class;
- 				}
- 				else if(c==7){
+ 				case 7:
  					return Boolean.class;
- 				}
- 				else {
+ 				default:
  					return String.class;
- 				}
- 			}
+ 				}// end switch
+ 			}// end getColumnClass
  		};
+
  
 
 		employeeTable = new JTable(tableModel);
