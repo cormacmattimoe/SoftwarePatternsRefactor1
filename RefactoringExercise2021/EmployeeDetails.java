@@ -971,7 +971,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// create file
 		application.createFile(file.getName());
 	}// end createFileDetails
-	
 
 	// action listener for buttons, text field and menu items
  	public void actionPerformed(ActionEvent e) {
@@ -1004,7 +1003,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
  				displaySearchBySurnameDialog();
  			}
  			else if (e.getSource() == saveChange) {
- 				;
+ 				saveChanges();
  			}
  			else if (e.getSource() == firstItem || e.getSource() == first) {
  				firstRecord();
