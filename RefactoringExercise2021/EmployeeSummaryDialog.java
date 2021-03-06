@@ -68,23 +68,28 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		for (int i = 0; i < headerName.length; i++) {
 			header.addElement(headerName[i]);
 		}// end for
-		// construnct table and choose table model for each column
-		tableModel = new DefaultTableModel(this.allEmployees, header) {
-			public Class getColumnClass(int c) {
-				switch (c) {
-				case 0:
-					return Integer.class;
-				case 4:
-					return Character.class;
-				case 6:
-					return Double.class;
-				case 7:
-					return Boolean.class;
-				default:
-					return String.class;
-				}// end switch
-			}// end getColumnClass
-		};
+	
+		//construct table and choose table model for each column
+ 		tableModel = new DefaultTableModel(this.allEmployees, header) {
+ 			public Class getColumnClass(int c) {
+ 				if(c==0) {
+ 					return Integer.class;
+ 				}
+ 				else if(c==4){
+ 					return Character.class;
+ 				}
+ 				else if(c==6){
+ 					return Double.class;
+ 				}
+ 				else if(c==7){
+ 					return Boolean.class;
+ 				}
+ 				else {
+ 					return String.class;
+ 				}
+ 			}
+ 		};
+ 
 
 		employeeTable = new JTable(tableModel);
 		// add header names to table

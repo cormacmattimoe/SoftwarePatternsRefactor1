@@ -4,7 +4,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
- //Class which organises the color sections
+ //Class which organises the color coded
 public class ColorManager {
 	
 	private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
