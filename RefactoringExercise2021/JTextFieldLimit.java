@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
-// set text field input limits
+
 class JTextFieldLimit extends PlainDocument {
     private final int limit;
     JTextFieldLimit(int limit) {
@@ -25,5 +25,5 @@ class JTextFieldLimit extends PlainDocument {
             super.insertString(offset, str, attr);
         else
             JOptionPane.showMessageDialog(null, "For input " + limit + " characters maximum!");
-    } // end insertString
-} // end class JTextFieldLimits
+    }
+}
