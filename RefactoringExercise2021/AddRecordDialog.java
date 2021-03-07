@@ -119,72 +119,13 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		this.parent.displayRecords(theEmployee);
 	}
 
-	// check for input in text fields
-
-
-	public boolean checkInput() {
-		boolean valid = true;
-		// if any of inputs are in wrong format, colour text field and display message
-		if (ppsField.getText().equals("")) 
-		{
-			ppsField.setBackground(ColorManager.errorColor);
-			valid = false;
-		}
-		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) 
-		{
-			ppsField.setBackground(ColorManager.errorColor);
-			valid = false;
-		}
-		if (surnameField.getText().isEmpty()) 
-		{
-			surnameField.setBackground(ColorManager.errorColor);
-			valid = false;
-		}
-		if (firstNameField.getText().isEmpty())
-		{
-			firstNameField.setBackground(ColorManager.errorColor);
-			valid = false;
-		}
-		if (genderCombo.getSelectedIndex() == 0)
-		{
-			genderCombo.setBackground(ColorManager.errorColor);
-			valid = false;
-		}
-		if (departmentCombo.getSelectedIndex() == 0) {
-			departmentCombo.setBackground(ColorManager.errorColor);
-			valid = false;
-		}
-		try 
-		{
-			Double.parseDouble(salaryField.getText());
-			// check if salary is greater than 0
-			if (Double.parseDouble(salaryField.getText()) < 0) 
-			{
-				salaryField.setBackground(ColorManager.errorColor);
-				valid = false;
-			}
-		}
-		catch (NumberFormatException num) 
-		{
-			salaryField.setBackground(ColorManager.errorColor);
-			valid = false;
-		}
-		if (fullTimeCombo.getSelectedIndex() == 0) {
-			fullTimeCombo.setBackground(ColorManager.errorColor);
-			valid = false;
-		}
-		return valid;
-	}// end checkInput
-
-	
-
 
 	// action performed
 	public void actionPerformed(ActionEvent e) {
 		// if chosen option save, save record to file
 		if (e.getSource() == save) {
 			// if inputs correct, save record
-			if (checkInput())
+			if (ValidateScreen.checkInput(ppsField, surnameField, firstNameField, genderCombo, departmentCombo, salaryField, fullTimeCombo))
 			{
 				addRecord();// add record to file
 				dispose();// dispose dialog
