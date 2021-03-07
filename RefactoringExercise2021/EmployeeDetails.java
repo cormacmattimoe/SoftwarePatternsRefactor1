@@ -735,6 +735,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
 		// set text field to white colour if text fields are editable
 		if (ppsField.isEditable())
+			//Setting fields to be set to white
 		  setToWhite();
 
 		return valid;
