@@ -10,11 +10,11 @@ import javax.swing.JTextField;
 		ValidatePPS parent;
 		ValidatePPS vps;
 
-		public void validation() {
+		public void ValidateScreenInput() {
 			
 		}
 		
-		public static boolean validate(JTextField ppsField, JTextField surnameField, JTextField firstNameField, JComboBox<String> genderCombo, JComboBox<String> departmentCombo) {
+		public static boolean validateInput(JTextField ppsField, JTextField surnameField, JTextField firstNameField, JComboBox<String> genderCombo, JComboBox<String> departmentCombo) {
 			boolean valid = true;
 			EmployeeDetails empDe = new EmployeeDetails();
 			if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
