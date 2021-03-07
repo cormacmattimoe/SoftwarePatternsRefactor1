@@ -32,7 +32,6 @@ public class ValidateScreen {
 	      {
 	    	  /*
 	    	   * Still to be done...
-	    	   * 
 	        // open file for reading
 	        application.openReadFile(file.getAbsolutePath());
 	        // look in file is PPS already in use

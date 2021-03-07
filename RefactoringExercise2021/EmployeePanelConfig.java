@@ -21,29 +21,29 @@ public class EmployeePanelConfig {
 		
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 
-		empDetails.add(new JLabel("ID:"), "growx, pushx");
-		empDetails.add(idField, "growx, pushx, wrap");
+		empDetails.add(new JLabel("ID:"), LayoutManager.loType1);
+		empDetails.add(idField, LayoutManager.loType2);
 
-		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
-		empDetails.add(ppsField, "growx, pushx, wrap");
+		empDetails.add(new JLabel("PPS Number:"),LayoutManager.loType1);
+		empDetails.add(ppsField, LayoutManager.loType2);
 
-		empDetails.add(new JLabel("Surname:"), "growx, pushx");
-		empDetails.add(surnameField, "growx, pushx, wrap");
+		empDetails.add(new JLabel("Surname:"),LayoutManager.loType1);
+		empDetails.add(surnameField, LayoutManager.loType2);
 
-		empDetails.add(new JLabel("First Name:"), "growx, pushx");
-		empDetails.add(firstNameField, "growx, pushx, wrap");
+		empDetails.add(new JLabel("First Name:"),LayoutManager.loType1);
+		empDetails.add(firstNameField,LayoutManager.loType2);
 
-		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo, "growx, pushx, wrap");
+		empDetails.add(new JLabel("Gender:"),LayoutManager.loType1);
+		empDetails.add(genderCombo, LayoutManager.loType2);
 
-		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo, "growx, pushx, wrap");
+		empDetails.add(new JLabel("Department:"),LayoutManager.loType1);
+		empDetails.add(departmentCombo, LayoutManager.loType2);
 
-		empDetails.add(new JLabel("Salary:"), "growx, pushx");
-		empDetails.add(salaryField, "growx, pushx, wrap");
+		empDetails.add(new JLabel("Salary:"),LayoutManager.loType1);
+		empDetails.add(salaryField, LayoutManager.loType2);
 
-		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo, "growx, pushx, wrap");
+		empDetails.add(new JLabel("Full Time:"),LayoutManager.loType1);
+		empDetails.add(fullTimeCombo, LayoutManager.loType2);
 
 		return empDetails;
 

@@ -59,7 +59,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
   // display files in File Chooser only with extension .dat
   private FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
   // hold file name and path for current file in use
-  private File file;
+  public File file;
   // holds true or false if any changes are made for text fields
   private boolean change = false;
   // holds true or false if any changes are made for file content
@@ -613,6 +613,30 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
     return someoneToDisplay;
   } // end method isSomeoneToDisplay
   
+	public boolean correctPps(String pps, long currentByte) {
+		boolean ppsExist = false;
+		// check for correct PPS format based on assignment description
+		if (pps.length() == 8 || pps.length() == 9) {
+			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
+					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3)) 
+					&& Character.isDigit(pps.charAt(4))	&& Character.isDigit(pps.charAt(5)) 
+					&& Character.isDigit(pps.charAt(6))	&& Character.isLetter(pps.charAt(7))
+					&& (pps.length() == 8 || Character.isLetter(pps.charAt(8)))) {
+				// open file for reading
+				application.openReadFile(file.getAbsolutePath());
+				// look in file is PPS already in use
+				ppsExist = application.isPpsExist(pps, currentByte);
+				application.closeReadFile();// close file for reading
+			} // end if
+			else
+				ppsExist = true;
+		} // end if
+		else
+			ppsExist = true;
+
+		return ppsExist;
+	}// end correctPPS
+  
 
   //Creating method here to set all fields to empty and calling that method above
   public void setFieldsEmpty() {
@@ -626,31 +650,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
     fullTimeCombo.setSelectedIndex(0);
   } // end method setFieldsEmpty
 
-  // check for correct PPS format and look if PPS already in use
-  public boolean correctPps(String pps, long currentByte) {
-    boolean ppsValid = false;
-    // check for correct PPS format based on assignment description
-    if (pps.length() == 8) {
-      if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1)) &&
-        Character.isDigit(pps.charAt(2)) && Character.isDigit(pps.charAt(3)) &&
-        Character.isDigit(pps.charAt(4)) && Character.isDigit(pps.charAt(5)) &&
-        Character.isDigit(pps.charAt(6)) &&
-        Character.isLetter(pps.charAt(7))) {
-        // open file for reading
-        application.openReadFile(file.getAbsolutePath());
-        // look in file is PPS already in use
-        ppsValid = application.isPpsExist(pps, currentByte);
-        application.closeReadFile(); // close file for reading
-      } 
-      else
-        ppsValid = true;
-    }
-    else
-      ppsValid = true;
-
-    return ppsValid;
-  } // end method correctPPS
-  
+ 
 
   // check if file name has extension .dat
   private boolean checkFileName(File fileName) {
@@ -682,58 +682,74 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
     return anyChanges;
   } // end method checkForChanges
 
-  // check for input in text fields
-  private boolean checkInput() {
-    boolean fieldValidation = true;
-    boolean entryValid = true;
+  
+	// check for input in text fields
+	private boolean checkInput() {
+		boolean valid = true;
+		// if any of inputs are in wrong format, colour text field and display
+		// message
+		if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
+			ppsField.setBackground(new Color(255, 150, 150));
+			valid = false;
+		} // end if
+		if (ppsField.isEditable() && correctPps(ppsField.getText().trim(), currentByteStart)) {
+			ppsField.setBackground(new Color(255, 150, 150));
+			valid = false;
+		} // end if
+		if (surnameField.isEditable() && surnameField.getText().trim().isEmpty()) {
+			surnameField.setBackground(new Color(255, 150, 150));
+			valid = false;
+		} // end if
+		if (firstNameField.isEditable() && firstNameField.getText().trim().isEmpty()) {
+			firstNameField.setBackground(new Color(255, 150, 150));
+			valid = false;
+		} // end if
+		if (genderCombo.getSelectedIndex() == 0 && genderCombo.isEnabled()) {
+			genderCombo.setBackground(new Color(255, 150, 150));
+			valid = false;
+		} // end if
+		if (departmentCombo.getSelectedIndex() == 0 && departmentCombo.isEnabled()) {
+			departmentCombo.setBackground(new Color(255, 150, 150));
+			valid = false;
+		} // end if
+		try {// try to get values from text field
+			Double.parseDouble(salaryField.getText());
+			// check if salary is greater than 0
+			if (Double.parseDouble(salaryField.getText()) < 0) {
+				salaryField.setBackground(new Color(255, 150, 150));
+				valid = false;
+			} // end if
+		} // end try
+		catch (NumberFormatException num) {
+			if (salaryField.isEditable()) {
+				salaryField.setBackground(new Color(255, 150, 150));
+				valid = false;
+			} // end if
+		} // end catch
+		if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
+			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			valid = false;
+		} // end if
+			// display message if any input or format is wrong
+		if (!valid)
+			JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
+		// set text field to white colour if text fields are editable
+		if (ppsField.isEditable())
+		  setToWhite();
 
-    //Validating any input made to screen if fields are empty
-    if (ValidateScreenInput.validateInputOfFields(ppsField, surnameField, firstNameField, genderCombo, departmentCombo)) {
-    	fieldValidation = false;
-    }
+		return valid;
+	}
+	public void setToWhite() {
+		ppsField.setBackground(UIManager.getColor("TextField.background"));
+		surnameField.setBackground(UIManager.getColor("TextField.background"));
+		firstNameField.setBackground(UIManager.getColor("TextField.background"));
+		salaryField.setBackground(UIManager.getColor("TextField.background"));
+		genderCombo.setBackground(UIManager.getColor("TextField.background"));
+		departmentCombo.setBackground(UIManager.getColor("TextField.background"));
+		fullTimeCombo.setBackground(UIManager.getColor("TextField.background"));
+	}
 
-    if (fieldValidation == false) {
 
-      if (ppsField.isEditable() && correctPps(ppsField.getText().trim(), currentByteStart)) {
-        ppsField.setBackground(Color.red);
-        entryValid = false;
-      }
-
-      try {
-        Double.parseDouble(salaryField.getText());
-        if (Double.parseDouble(salaryField.getText()) < 0) {
-          salaryField.setBackground(Color.red);
-          entryValid = false;
-        }
-      } catch (NumberFormatException num) {
-        if (salaryField.isEditable()) {
-          salaryField.setBackground(Color.red);
-          entryValid = false;
-        }
-      }
-      if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
-        fullTimeCombo.setBackground(Color.red);
-        entryValid = false;
-      }
-      if (!entryValid)
-        JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
-
-      if (ppsField.isEditable())
-        setToWhite();
-    }
-    return entryValid;
-  }
-
-  // set text field background colour to white
-  private void setToWhite() {
-    ppsField.setBackground(UIManager.getColor("TextField.background"));
-    surnameField.setBackground(UIManager.getColor("TextField.background"));
-    firstNameField.setBackground(UIManager.getColor("TextField.background"));
-    salaryField.setBackground(UIManager.getColor("TextField.background"));
-    genderCombo.setBackground(UIManager.getColor("TextField.background"));
-    departmentCombo.setBackground(UIManager.getColor("TextField.background"));
-    fullTimeCombo.setBackground(UIManager.getColor("TextField.background"));
-  }
 
   // enable text fields for editing
   public void setEnabled(boolean booleanValue) {
@@ -921,6 +937,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
       System.exit(0); // exit application
     } 
   } // end exitApp
+  
 
   // generate 20 character long file name
   private String getFileName() {
@@ -947,6 +964,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
   // action listener for buttons, text field and menu items
   public void actionPerformed(ActionEvent e) {
+
 
     if (e.getSource() == searchId || e.getSource() == searchByIdField)
       searchEmployeeById();
