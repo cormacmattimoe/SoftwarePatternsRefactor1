@@ -612,6 +612,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
     }
     return someoneToDisplay;
   } // end method isSomeoneToDisplay
+  
 
   //Creating method here to set all fields to empty and calling that method above
   public void setFieldsEmpty() {
@@ -687,7 +688,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
     boolean entryValid = true;
 
     //Validating any input made to screen if fields are empty
-    if (ValidateScreenInput.validateInput(ppsField, surnameField, firstNameField, genderCombo, departmentCombo)) {
+    if (ValidateScreenInput.validateInputOfFields(ppsField, surnameField, firstNameField, genderCombo, departmentCombo)) {
     	fieldValidation = false;
     }
 

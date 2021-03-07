@@ -14,30 +14,29 @@ import javax.swing.JTextField;
 			
 		}
 		
-		public static boolean validateInput(JTextField ppsField, JTextField surnameField, JTextField firstNameField, JComboBox<String> genderCombo, JComboBox<String> departmentCombo) {
-			boolean valid = true;
-			EmployeeDetails empDe = new EmployeeDetails();
+		public static boolean validateInputOfFields(JTextField ppsField, JTextField surnameField, JTextField firstNameField, JComboBox<String> genderCombo, JComboBox<String> departmentCombo) {
+			boolean fieldValid = true;
 			if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
 				ppsField.setBackground(ColorManager.errorColor);
-				valid = false;
+				fieldValid = false;
 			} 
 			if (surnameField.isEditable() && surnameField.getText().trim().isEmpty()) {
 				surnameField.setBackground(ColorManager.errorColor);
-				valid = false;
+				fieldValid = false;
 			} 
 			if (firstNameField.isEditable() && firstNameField.getText().trim().isEmpty()) {
 				firstNameField.setBackground(ColorManager.errorColor);
-				valid = false;
+				fieldValid = false;
 			}
 			if (genderCombo.getSelectedIndex() == 0 && genderCombo.isEnabled()) {
 				genderCombo.setBackground(ColorManager.errorColor);
-				valid = false;
+				fieldValid = false;
 			} 
 			if (departmentCombo.getSelectedIndex() == 0 && departmentCombo.isEnabled()) {
 				departmentCombo.setBackground(ColorManager.errorColor);
-				valid = false;
+				fieldValid = false;
 			} 
-			return valid;
+			return fieldValid;
 			
 			
 		}
