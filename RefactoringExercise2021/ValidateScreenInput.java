@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 		ValidatePPS parent;
 		ValidatePPS vps;
 
-		public void ValidateScreenInput() {
+		public ValidateScreenInput() {
 			
 		}
 		
