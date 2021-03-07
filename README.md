@@ -65,7 +65,7 @@ o	Added new comments to be more relevant and removed comments
 
 o	Updated: ValidateScreenInput class to work in parent class
 
-o	Created ValidateScreen to do all validations
+o	Created ValidateScreen to do all validations.
 
 
 
