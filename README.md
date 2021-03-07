@@ -1,6 +1,6 @@
 # SoftwarePatternsRefactor1
 
-**Updated ReadMe Commits**
+**Updated Commits**
 
 o	5/3/21 (18:33) : Pushed project with no jars
 
